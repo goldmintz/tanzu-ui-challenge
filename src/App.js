@@ -6,6 +6,7 @@ import Nav from './components/Nav';
 import Table from './components/Table';
 import TableControls from './components/TableControls';
 import Pagination from './components/Pagination';
+import CreateClusterForm from './components/CreateClusterForm';
 
 export const App = () => {
 	//Fetch clusters on mount
@@ -60,6 +61,15 @@ export const App = () => {
 		);
 	};
 
+	//Create New Cluster
+	//toggle create new cluster form
+	const [showCreateClusterForm, setShowCreateClusterForm] = useState(false);
+	const addNewCluster = (newCluster) => {
+		let newClusterList = clusters.concat(newCluster);
+		setClusters(clusters.concat(newCluster));
+		localStorage.setItem('clusters', JSON.stringify(newClusterList));
+	};
+
 	return (
 		<div>
 			<Nav />
@@ -75,6 +85,7 @@ export const App = () => {
 					setSearchTerm('');
 					setCurrentClusterPage(1);
 				}}
+				toggleClusterForm={setShowCreateClusterForm}
 			/>
 			<Table
 				clusters={searchClusters(clusters)}
@@ -89,6 +100,12 @@ export const App = () => {
 				filteredClusters={searchClusters(clusters)}
 				totalClusters={clusters.length}
 			/>
+			{showCreateClusterForm && (
+				<CreateClusterForm
+					toggleClusterForm={setShowCreateClusterForm}
+					addNewCluster={addNewCluster}
+				/>
+			)}
 		</div>
 	);
 };

@@ -7,6 +7,7 @@ const TableControls = ({
 	searchTerm,
 	setSearchTerm,
 	clearSearchTerm,
+	toggleClusterForm,
 }) => {
 	const clusterCountHeading =
 		filteredClustersCount === totalClustersCount
@@ -20,6 +21,9 @@ const TableControls = ({
 					<h1>Clusters</h1>
 					<div id='cluster-count'>{clusterCountHeading}</div>
 				</div>
+				<button className='btn-primary' onClick={() => toggleClusterForm(true)}>
+					New Cluster
+				</button>
 			</div>
 
 			<div>
