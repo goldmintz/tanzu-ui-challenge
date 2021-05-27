@@ -34,17 +34,37 @@ export const App = () => {
 		getClusters();
 	}, []);
 
-	//cluster state management
+	//Cluster state management
 	const [clusters, setClusters] = useState([]);
+	const [currentClusterPage, setCurrentClusterPage] = useState(1);
+	const [clustersPerPage] = useState(10);
+
+	//Pagination Helpers
+	const lastCluster = currentClusterPage * clustersPerPage;
+	const firstCluster = lastCluster - clustersPerPage;
 
 	//search state management
+	const [searchTerm, setSearchTerm] = useState('');
 
-	
+	const searchClusters = (clusters) => {
+		const term = searchTerm.toLowerCase();
+
+		return clusters.filter(
+			(cluster) =>
+				cluster.name.toLowerCase().includes(term) ||
+				cluster.os.toLowerCase().includes(term),
+			//include search within label and namespace arrays
+		);
+	};
 
 	return (
 		<div>
 			<Nav />
-			<Table />
+			<Table
+				clusters={searchClusters(clusters)}
+				firstCluster={firstCluster}
+				lastCluster={lastCluster}
+			/>
 			<Pagination />
 		</div>
 	);
