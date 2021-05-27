@@ -71,42 +71,44 @@ export const App = () => {
 	};
 
 	return (
-		<div>
+		<>
 			<Nav />
-			<TableControls
-				totalClustersCount={clusters.length}
-				filteredClustersCount={searchClusters(clusters).length}
-				searchTerm={searchTerm}
-				setSearchTerm={(e) => {
-					setSearchTerm(e.target.value);
-					setCurrentClusterPage(1);
-				}}
-				clearSearchTerm={() => {
-					setSearchTerm('');
-					setCurrentClusterPage(1);
-				}}
-				toggleClusterForm={setShowCreateClusterForm}
-			/>
-			<Table
-				clusters={searchClusters(clusters)}
-				firstCluster={firstCluster}
-				lastCluster={lastCluster}
-			/>
-			<Pagination
-				setCurrentClusterPage={setCurrentClusterPage}
-				currentClusterPage={currentClusterPage}
-				firstCluster={firstCluster}
-				lastCluster={lastCluster}
-				filteredClusters={searchClusters(clusters)}
-				totalClusters={clusters.length}
-			/>
+			<div className='page-wrapper'>
+				<TableControls
+					totalClustersCount={clusters.length}
+					filteredClustersCount={searchClusters(clusters).length}
+					searchTerm={searchTerm}
+					setSearchTerm={(e) => {
+						setSearchTerm(e.target.value);
+						setCurrentClusterPage(1);
+					}}
+					clearSearchTerm={() => {
+						setSearchTerm('');
+						setCurrentClusterPage(1);
+					}}
+					toggleClusterForm={setShowCreateClusterForm}
+				/>
+				<Table
+					clusters={searchClusters(clusters)}
+					firstCluster={firstCluster}
+					lastCluster={lastCluster}
+				/>
+				<Pagination
+					setCurrentClusterPage={setCurrentClusterPage}
+					currentClusterPage={currentClusterPage}
+					firstCluster={firstCluster}
+					lastCluster={lastCluster}
+					filteredClusters={searchClusters(clusters)}
+					totalClusters={clusters.length}
+				/>
+			</div>
 			{showCreateClusterForm && (
 				<CreateClusterForm
 					toggleClusterForm={setShowCreateClusterForm}
 					addNewCluster={addNewCluster}
 				/>
 			)}
-		</div>
+		</>
 	);
 };
 

@@ -18,7 +18,6 @@ const CreateClusterForm = ({ toggleClusterForm, addNewCluster }) => {
 		os,
 		cores,
 		pods,
-		nodes,
 		total_memory_gb: total_memory,
 		labels,
 		namespaces,
