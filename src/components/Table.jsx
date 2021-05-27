@@ -13,6 +13,7 @@ const Table = ({ clusters, firstCluster, lastCluster }) => {
 	//destructure sorting params
 	const { field, direction } = sortParams;
 
+	//sort setup - look for a sort field and direction, then sort array accordingly
 	if (field !== null) {
 		sortedClusters.sort((a, b) => {
 			if (a[field] < b[field]) {
@@ -46,7 +47,7 @@ const Table = ({ clusters, firstCluster, lastCluster }) => {
 		) : undefined;
 	};
 
-	//Clear sort
+	//Clear sort from array and reset
 	const clearSort = () => {
 		setSortParams({ field: null, direction: null });
 	};
@@ -111,17 +112,12 @@ const Table = ({ clusters, firstCluster, lastCluster }) => {
 								<td>{cores}</td>
 								<td>{pods}</td>
 								<td>{nodes}</td>
-								{total_memory && <td>{total_memory.toLocaleString('en')}%</td>}
-
+								<td>{total_memory.toLocaleString('en')}%</td>
 								<td className='list-col'>
 									<span className='btn-labels'>{labels.length}</span>{' '}
 									{labels.join(', ')}
 								</td>
-								{namespaces.length > 0 && (
-									<td className='list-col namespaces'>
-										{namespaces.join(',')}
-									</td>
-								)}
+								<td className='list-col namespaces'>{namespaces.join(',')}</td>
 							</tr>
 						),
 					)}

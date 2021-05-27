@@ -4,6 +4,7 @@ import './styles.css';
 //import children
 import Nav from './components/Nav';
 import Table from './components/Table';
+import TableControls from './components/TableControls';
 import Pagination from './components/Pagination';
 
 export const App = () => {
@@ -36,14 +37,16 @@ export const App = () => {
 
 	//Cluster state management
 	const [clusters, setClusters] = useState([]);
+
+	//Cluster pagination/inventory management
 	const [currentClusterPage, setCurrentClusterPage] = useState(1);
-	const [clustersPerPage] = useState(10);
+	const [clustersPerPage] = useState(10); //instructions say no more than 25 at a time
 
 	//Pagination Helpers
 	const lastCluster = currentClusterPage * clustersPerPage;
 	const firstCluster = lastCluster - clustersPerPage;
 
-	//search state management
+	//Search state management
 	const [searchTerm, setSearchTerm] = useState('');
 
 	const searchClusters = (clusters) => {
@@ -60,6 +63,13 @@ export const App = () => {
 	return (
 		<div>
 			<Nav />
+			<TableControls
+				totalClustersCount={clusters.length}
+				filteredClustersCount={searchClusters(clusters).length}
+				searchTerm={searchTerm}
+				setSearchTerm={(e) => setSearchTerm(e.target.value)}
+				clearSearchTerm={() => setSearchTerm('')}
+			/>
 			<Table
 				clusters={searchClusters(clusters)}
 				firstCluster={firstCluster}
