@@ -1,6 +1,6 @@
 {
 	"name": "tanzu-ui-challenge",
-	"homepage": "http://goldmintz.github.io/tanzu-ui-challenge",
+	"homepage": "http://goldmintz.github.io/tanzu-ui-challenge/",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
