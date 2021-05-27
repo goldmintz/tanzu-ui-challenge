@@ -20,7 +20,6 @@ const TableControls = ({
 					<h1>Clusters</h1>
 					<div id='cluster-count'>{clusterCountHeading}</div>
 				</div>
-
 			</div>
 
 			<div>
@@ -31,7 +30,11 @@ const TableControls = ({
 					value={searchTerm}
 					onChange={setSearchTerm}
 				/>
-				<button className='btn-secondary' onClick={clearSearchTerm}>
+				<button
+					className='btn-secondary'
+					onClick={clearSearchTerm}
+					//disable search unless user enters term (otherwise click resets currentClustersPage to 1)
+					disabled={searchTerm === ''}>
 					Clear search
 				</button>
 			</div>

@@ -81,7 +81,9 @@ const Table = ({ clusters, firstCluster, lastCluster }) => {
 						<button
 							type='button'
 							className='sort-icon'
-							onClick={() => toggleSort('cores')}>
+							onClick={() => {
+								toggleSort('cores');
+							}}>
 							{sortIcon('cores')}
 						</button>
 					</th>

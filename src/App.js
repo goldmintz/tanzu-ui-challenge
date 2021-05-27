@@ -8,7 +8,7 @@ import TableControls from './components/TableControls';
 import Pagination from './components/Pagination';
 
 export const App = () => {
-	//Fetch clusters on load
+	//Fetch clusters on mount
 	//If clusters are in local storage, use those
 	//Local storage used for updated array, including newly created cluster records
 	useEffect(() => {
@@ -67,15 +67,28 @@ export const App = () => {
 				totalClustersCount={clusters.length}
 				filteredClustersCount={searchClusters(clusters).length}
 				searchTerm={searchTerm}
-				setSearchTerm={(e) => setSearchTerm(e.target.value)}
-				clearSearchTerm={() => setSearchTerm('')}
+				setSearchTerm={(e) => {
+					setSearchTerm(e.target.value);
+					setCurrentClusterPage(1);
+				}}
+				clearSearchTerm={() => {
+					setSearchTerm('');
+					setCurrentClusterPage(1);
+				}}
 			/>
 			<Table
 				clusters={searchClusters(clusters)}
 				firstCluster={firstCluster}
 				lastCluster={lastCluster}
 			/>
-			<Pagination />
+			<Pagination
+				setCurrentClusterPage={setCurrentClusterPage}
+				currentClusterPage={currentClusterPage}
+				firstCluster={firstCluster}
+				lastCluster={lastCluster}
+				filteredClusters={searchClusters(clusters)}
+				totalClusters={clusters.length}
+			/>
 		</div>
 	);
 };
