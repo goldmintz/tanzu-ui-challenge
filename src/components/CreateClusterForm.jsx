@@ -5,10 +5,10 @@ const CreateClusterForm = ({ toggleClusterForm, addNewCluster }) => {
 	const [clusterFields, setClusterFields] = useState({
 		name: '',
 		os: '',
-		cores: '-',
-		pods: '-',
-		nodes: '-',
-		total_memory_gb: '-',
+		cores: '',
+		pods: '',
+		nodes: '',
+		total_memory_gb: '',
 		labels: [],
 		namespaces: [],
 	});
@@ -18,7 +18,7 @@ const CreateClusterForm = ({ toggleClusterForm, addNewCluster }) => {
 		os,
 		cores,
 		pods,
-		total_memory_gb: total_memory,
+		// total_memory_gb: total_memory,
 		labels,
 		namespaces,
 	} = clusterFields;
@@ -30,18 +30,25 @@ const CreateClusterForm = ({ toggleClusterForm, addNewCluster }) => {
 	};
 
 	const handleChange = (e) => {
-		if (e.target.name === 'labels' || e.target.name === 'namespaces') {
-			let newArray = e.target.value.split(',');
+		if (e.target.name === 'namespaces' || e.target.name === 'labels') {
+			let newNameSpaces = e.target.value.split(',');
 			setClusterFields({
 				...clusterFields,
-				[e.target.name]: newArray,
+				[e.target.name]: newNameSpaces,
 			});
-		} else {
+		}
+		// if (e.target.name === 'labels') {
+		// 	console.log(e.target.value);
+		// 	let newLabels = Array.from(e.target.value, (value) => value);
+		// 	setClusterFields({
+		// 		...clusterFields,
+		// 		[e.target.name]: e.target.value,
+		// 	});
+		// 	console.log(clusterFields);
+		else {
 			setClusterFields({ ...clusterFields, [e.target.name]: e.target.value });
 		}
 	};
-
-	console.log(clusterFields);
 
 	return (
 		<div className='form-wrapper'>
@@ -59,7 +66,6 @@ const CreateClusterForm = ({ toggleClusterForm, addNewCluster }) => {
 				</div>
 				<hr style={{ width: '100%' }}></hr>
 				<div className='form-input-wrapper'>
-					{' '}
 					<label>
 						Name
 						<input
@@ -72,8 +78,25 @@ const CreateClusterForm = ({ toggleClusterForm, addNewCluster }) => {
 					</label>
 					<label>
 						OS
-						<input name='os' type='text' value={os} onChange={handleChange} />
+						<select name='os' value={os} onChange={handleChange}>
+							<option value=''></option>
+							<option value='fedora'>fedora</option>
+							<option value='suse'>suse</option>
+							<option value='ubuntu'>ubuntu</option>
+						</select>
 					</label>
+					{/* <label>
+						Labels
+						<select
+							name='labels'
+							multiple={true}
+							onChange={handleChange}
+							value={labels}>
+							<option value='zen'>Zen</option>
+							<option value='ana'>Ana</option>
+							<option value='junk'>Junk</option>
+						</select>
+					</label> */}
 					<label>
 						Labels
 						<input
@@ -117,7 +140,7 @@ const CreateClusterForm = ({ toggleClusterForm, addNewCluster }) => {
 				</div>
 				<input
 					type='submit'
-					value='Submit'
+					value='Create New Cluster'
 					className='btn-primary'
 					id='btn-form-submit'
 				/>{' '}

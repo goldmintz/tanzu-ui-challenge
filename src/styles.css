@@ -299,7 +299,8 @@ form {
 	background-color: var(--secondary-grey);
 }
 
-form input {
+form input,
+form select {
 	background-color: transparent;
 	outline: none;
 	border-width: 0 0 2px;
@@ -309,15 +310,18 @@ form input {
 	width: 20%;
 	color: var(--primary-text);
 	margin: 10px;
-	width: 80%;
+	width: 50%;
 }
 
-form input:focus {
+form input:focus,
+form select:focus {
 	border-color: var(--focus-orange);
 }
 
 form label {
 	font-weight: bold;
+	color: var(--primary-text);
+	border: none;
 }
 
 .form-header {
