@@ -119,7 +119,7 @@ const Table = ({ clusters, firstCluster, lastCluster }) => {
 									<span className='btn-labels'>{labels.length}</span>{' '}
 									{labels.join(', ')}
 								</td>
-								<td className='list-col namespaces'>{namespaces.join(',')}</td>
+								<td className='list-col namespaces'>{namespaces.join(', ')}</td>
 							</tr>
 						),
 					)}

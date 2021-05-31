@@ -38,6 +38,9 @@ h3 {
 	margin: 0;
 }
 
+hr {
+	width: 100%;
+}
 a {
 	text-decoration: none;
 }
@@ -294,8 +297,8 @@ form {
 	flex-direction: column;
 	padding: 30px;
 	outline: 1px solid var(--primary-text);
-	height: 500px;
-	width: 700px;
+	height: 100vh;
+	width: 60vw;
 	background-color: var(--secondary-grey);
 }
 
@@ -307,10 +310,10 @@ form select {
 	border-color: var(--primary-blue);
 	margin-right: 20px;
 	font-size: 16px;
-	width: 20%;
 	color: var(--primary-text);
 	margin: 10px;
-	width: 50%;
+	/* width: 50%; */
+	vertical-align: top;
 }
 
 form input:focus,
@@ -322,6 +325,7 @@ form label {
 	font-weight: bold;
 	color: var(--primary-text);
 	border: none;
+	flex: 1;
 }
 
 .form-header {
@@ -334,7 +338,22 @@ form label {
 .form-input-wrapper {
 	display: flex;
 	flex-direction: column;
+	justify-content: center;
+	align-items: center;
 	padding: 20px;
+	height: 100%;
+	gap: 30px;
+}
+
+.form-row {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+}
+
+#labels-multiselect {
+	width: 50%;
+	border: 1px solid var(--primary-text);
 }
 
 #btn-close-form {
@@ -344,5 +363,6 @@ form label {
 }
 
 #btn-form-submit {
-	width: 90%;
+	margin-left: auto;
+	justify-self: flex-end;
 }
